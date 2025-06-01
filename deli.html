@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>São Paulo - Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B0000',
+                        secondary: '#D4AF37',
+                        dark: '#1A1A1A',
+                        light: '#F8F8F8',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'skyline-pattern': "url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+                        'gold-pattern': "url('https://www.transparenttextures.com/patterns/gold.png')",
+                        'delivery-hero': "url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333333;
+            scroll-behavior: smooth;
+            background-color: #F8F8F8;
+        }
+        
+        .hero-delivery {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .delivery-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .delivery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .delivery-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto;
+            font-size: 30px;
+        }
+        
+        .section-divider {
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #8B0000, #D4AF37);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .gold-texture {
+            background: linear-gradient(rgba(212, 175, 55, 0.9), rgba(212, 175, 55, 0.9)), url('https://www.transparenttextures.com/patterns/gold.png');
+        }
+        
+        .menu-item {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .menu-item:hover {
+            background-color: rgba(139, 0, 0, 0.05);
+        }
+        
+        .app-badge {
+            transition: all 0.3s ease;
+            filter: grayscale(30%);
+        }
+        
+        .app-badge:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="text-2xl font-serif font-bold text-primary">SÃO PAULO</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-dark font-semibold hover-bordo transition nav-link">Inicio</a>
+                    <a href="menu.html" class="text-dark font-semibold hover-bordo transition nav-link">Cardápio</a>
+                    <a href="xp.html" class="text-dark font-semibold hover-bordo transition nav-link">Experiência</a>
+                    <a style="color: rgb(255, 0, 0);" href="deli.html" class="text-dark font-semibold hover-bordo transition nav-link">Delivery</a>
+                    <a href="reserva.html" class="text-dark font-semibold hover-bordo transition nav-link">Restaurantes</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="re2.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-bordo transition">RESERVAS</a>
+                    <button class="md:hidden text-dark focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Delivery Section -->
+    <section id="delivery" class="hero-delivery text-white py-32 relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">DELIVERY EXCLUSIVO</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">A experiência São Paulo agora na sua casa</p>
+            <div class="mt-10">
+                <a href="#pedir-agora" class="inline-block bg-secondary text-dark px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition mr-4">PEDIR AGORA</a>
+                <a href="#como-funciona" class="inline-block border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition">COMO FUNCIONA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="como-funciona" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">COMO FUNCIONA</h2>
+                <div class="section-divider"></div>
+                <p class="text-lg max-w-4xl mx-auto">Nosso serviço de delivery premium leva a autêntica cozinha italiana diretamente para você, com todo o cuidado e sofisticação de nossa equipe.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="delivery-card bg-gray-50 rounded-2xl p-8 text-center">
+                    <div class="delivery-icon bg-primary text-white mb-6">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">1. Faça seu pedido</h3>
+                    <p class="text-gray-600">Escolha pelo nosso site, app ou telefone. Temos opções completas de refeições ou kits especiais.</p>
+                </div>
+                
+                <div class="delivery-card bg-gray-50 rounded-2xl p-8 text-center">
+                    <div class="delivery-icon bg-secondary text-dark mb-6">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">2. Preparamos com cuidado</h3>
+                    <p class="text-gray-600">Nossos chefs preparam cada prato com os mesmos ingredientes premium do restaurante.</p>
+                </div>
+                
+                <div class="delivery-card bg-gray-50 rounded-2xl p-8 text-center">
+                    <div class="delivery-icon bg-primary text-white mb-6">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">3. Entrega especial</h3>
+                    <p class="text-gray-600">Nossa equipe entrega pessoalmente, com embalagens térmicas e instruções de montagem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Menu Section -->
+    <section id="pedir-agora" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">NOSSO CARDÁPIO DELIVERY</h2>
+                <div class="section-divider"></div>
+                <p class="text-lg max-w-4xl mx-auto">Pratos especialmente adaptados para manter a qualidade durante o transporte.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-10">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-primary">ENTRADAS</h3>
+                    </div>
+                    
+                    <div class="divide-y divide-gray-100">
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Bruschetta Premium</h4>
+                                <p class="text-gray-600">Pão italiano artesanal com tomates cereja, manjericão fresco e azeite trufado</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 42,00</div>
+                        </div>
+                        
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Carpaccio de Filé Mignon</h4>
+                                <p class="text-gray-600">Finas fatias de filé mignon com rúcula, parmesão e molho de mostarda dijon</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 68,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-10">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-primary">PRINCIPAIS</h3>
+                    </div>
+                    
+                    <div class="divide-y divide-gray-100">
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Risoto de Funghi Porcini</h4>
+                                <p class="text-gray-600">Arroz arbóreo com cogumelos porcini importados e vinho branco (kit para finalização)</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 89,00</div>
+                        </div>
+                        
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Tagliatelle ao Ragu</h4>
+                                <p class="text-gray-600">Massa fresca com molho de carne suína e bovina cozida por 8 horas</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 75,00</div>
+                        </div>
+                        
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Saltimbocca alla Romana</h4>
+                                <p class="text-gray-600">Filé de vitela com presunto parma e sálvia, acompanha purê de batata trufado</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 98,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-primary">KITS ESPECIAIS</h3>
+                    </div>
+                    
+                    <div class="divide-y divide-gray-100">
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Kit Romântico</h4>
+                                <p class="text-gray-600">2 entradas, 2 principais, sobremesa e garrafa de vinho (seleção do sommelier)</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 249,00</div>
+                        </div>
+                        
+                        <div class="menu-item p-6 flex flex-col md:flex-row justify-between">
+                            <div class="mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg">Kit Família</h4>
+                                <p class="text-gray-600">4 entradas, 4 principais, 2 sobremesas e garrafa de vinho ou sucos premium</p>
+                            </div>
+                            <div class="text-secondary font-bold text-lg">R$ 399,00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="menu.html" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-bordo transition">VER CARDÁPIO COMPLETO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Apps Section -->
+    <section class="py-20 gold-texture text-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-serif font-bold mb-6">PEÇA PELO SEU APP PREFERIDO</h2>
+                <p class="text-xl mb-12">Também estamos disponíveis nas principais plataformas de delivery</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <a href="ifood.html" class="app-badge bg-white p-4 rounded-xl shadow-md">
+                        <img src="https://imgs.search.brave.com/KpVqeELqqNhloB4gDp4EMVKUUa32hrhjVRZhFwTZ1vk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy85/LzkwL0lGb29kX2xv/Z28uc3Zn" alt="iFood" class="h-16 mx-auto">
+                    </a>
+                    
+                    <a href="https://www.ubereats.com/br?mod=feedLocationRequestModal&modctx=%257B%2522mode%2522%253A%2522REQUEST%2522%257D&ps=1" class="app-badge bg-white p-4 rounded-xl shadow-md">
+                        <img src="https://imgs.search.brave.com/NWa98SM8nZrngL645yKTEfateaF9Wue6ukgbYm5aC-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzM1LzEvdWJlci1l/YXRzLWxvZ28tcG5n/X3NlZWtsb2dvLTM1/MTU1Ny5wbmc" alt="Uber Eats" class="h-16 mx-auto">
+                    </a>
+                    
+                    <a href="https://www.rappi.com.br/" class="app-badge bg-white p-4 rounded-xl shadow-md">
+                        <img src="https://imgs.search.brave.com/vMN6rFxdBSQBkK3MqaeCGI2_4DMo9LMAexIR-9TMMZk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzMxLzEvcmFwcGkt/bG9nby1wbmdfc2Vl/a2xvZ28tMzEyMjY5/LnBuZw" alt="Rappi" class="h-16 mx-auto">
+                    </a>
+                    
+                    <a href="https://www.ze.delivery/" class="app-badge bg-white p-4 rounded-xl shadow-md">
+                        <img src="https://imgs.search.brave.com/ZHgKfCYkcbm6--50dEbAGsQ1bWGeEqf7InbX_nzQmVE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvcHQvdGh1bWIv/YS9hNS9aJUMzJUE5/X0RlbGl2ZXJ5Lmpw/ZWcvNTEycHgtWiVD/MyVBOV9EZWxpdmVy/eS5qcGVn" alt="Zé Delivery" class="h-16 mx-auto">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Area Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-serif font-bold text-primary mb-6">ÁREA DE ENTREGA</h2>
+                    <div class="section-divider md:mx-0"></div>
+                    <p class="text-lg mb-6">Atendemos toda a região central de São Paulo com nosso serviço de delivery premium. Verifique se seu endereço está dentro da nossa área de cobertura.</p>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                            <span>Entregamos em até 60 minutos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                            <span>Embalagens térmicas especiais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                            <span>Instruções de montagem e finalização</span>
+                        </li>
+                    </ul>
+                    
+                </div>
+                
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Mapa de entrega" class="rounded-2xl shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery CTA -->
+    <section class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-6">EXPERIMENTE O SÃO PAULO EM CASA</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Nosso delivery premium leva a autêntica cozinha italiana para o conforto do seu lar.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#pedir-agora" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">FAZER PEDIDO</a>
+                <a href="#" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition">FALE CONOSCO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl font-serif font-bold text-white">SÃO PAULO</span>
+                    </div>
+                    <p class="mb-4">A melhor experiência em gastronomia italiana na cidade.</p>
+                    <div class="flex space-x-4">
+                        <a href="instagram.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                        <a href="facebook.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="ttk.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-tiktok"></i></a>
+                        <a href="tube.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">HORÁRIOS</h4>
+                    <ul class="space-y-3">
+                        <li>Terça a Quinta: 18h-23h</li>
+                        <li>Sexta e Sábado: 18h-00h</li>
+                        <li>Domingo: 12h-22h</li>
+                        <li>Segunda: Fechado</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">CONTATO</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+                            <span>Torre São Paulo<br>Av. Paulista, 2000<br>São Paulo - SP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-secondary"></i>
+                            <span>(11) 98432-5692</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-secondary"></i>
+                            <span>contato@torresp.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">NEWSLETTER</h4>
+                    <p class="mb-4">Receba novidades e promoções exclusivas</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Seu e-mail" class="flex-grow px-4 py-2 rounded-l-full focus:outline-none text-dark">
+                        <button class="bg-secondary text-dark px-4 py-2 rounded-r-full"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p>&copy; 2023 Restaurante São Paulo. Todos os direitos reservados.</p>
+                <p class="mt-2 text-sm">Desenvolvido com paixão pela gastronomia italiana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <div class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-xl z-50 hover:bg-green-700 transition">
+        <a href="zapzap.html" class="flex items-center">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+</body>
+</html>

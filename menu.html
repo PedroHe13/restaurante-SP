@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>São Paulo - Cardápio Completo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B0000',  // Bordô
+                        secondary: '#D4AF37', // Dourado
+                        dark: '#1A1A1A',
+                        light: '#F8F8F8',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                        '2xl': '2rem',
+                        '3xl': '3rem',
+                        '4xl': '4rem'
+                    },
+                    backgroundImage: {
+                        'gold-pattern': "url('https://www.transparenttextures.com/patterns/gold.png')",
+                        'soft-paper': "url('https://www.transparenttextures.com/patterns/soft-paper.png')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333333;
+            scroll-behavior: smooth;
+            background-color: #F8F8F8;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .nav-shadow {
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://www.transparenttextures.com/patterns/soft-paper.png');
+            border-radius: 2.5rem;
+        }
+        
+        .menu-item {
+            transition: all 0.4s ease;
+            border-radius: 2rem;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            background-color: #8B0000;
+            color: white;
+            border-radius: 2.5rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: #6B0000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            background-color: #D4AF37;
+            color: #1A1A1A;
+            border-radius: 2.5rem;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #C19C30;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .gold-bg {
+            background-image: url('https://www.transparenttextures.com/patterns/soft-paper.png');
+            background-color: #D4AF37;
+            border-radius: 2.5rem;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -12px;
+            left: 25%;
+            background-color: #D4AF37;
+            border-radius: 2px;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gold-border {
+            border: 2px solid #D4AF37;
+            border-radius: 2.5rem;
+        }
+        
+        .hover-gold:hover {
+            color: #D4AF37 !important;
+        }
+        
+        .hover-bordo:hover {
+            color: #8B0000 !important;
+        }
+        
+        .top-banner {
+            background-color: #8B0000;
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+            text-align: center;
+            border-bottom-left-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+        }
+        
+        .promo-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #D4AF37;
+            color: #1A1A1A;
+            padding: 5px 15px;
+            border-radius: 2.5rem;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .rounded-xl {
+            border-radius: 2rem;
+        }
+        
+        .rounded-2xl {
+            border-radius: 2.5rem;
+        }
+        
+        .rounded-3xl {
+            border-radius: 3.5rem;
+        }
+        
+        .rounded-4xl {
+            border-radius: 4rem;
+        }
+        
+        .soft-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .footer-section {
+            border-top-left-radius: 4rem;
+            border-top-right-radius: 4rem;
+        }
+        
+        .floating-button {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-button:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Decals styles */
+        .decal {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        .decal-1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(15deg);
+            width: 60px;
+            height: 60px;
+        }
+        
+        .decal-2 {
+            top: 25%;
+            right: 3%;
+            transform: rotate(-10deg);
+            width: 50px;
+            height: 50px;
+        }
+        
+        .decal-3 {
+            bottom: 20%;
+            left: 8%;
+            transform: rotate(25deg);
+            width: 70px;
+            height: 70px;
+        }
+        
+        .decal-4 {
+            bottom: 15%;
+            right: 5%;
+            transform: rotate(-15deg);
+            width: 45px;
+            height: 45px;
+        }
+        
+        .decal-5 {
+            top: 50%;
+            left: 2%;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .decal-6 {
+            top: 60%;
+            right: 2%;
+            width: 55px;
+            height: 55px;
+        }
+        
+        .decal-7 {
+            top: 15%;
+            left: 50%;
+            transform: rotate(10deg);
+            width: 65px;
+            height: 65px;
+        }
+        
+        .decal-8 {
+            bottom: 30%;
+            right: 10%;
+            transform: rotate(-20deg);
+            width: 50px;
+            height: 50px;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .menu-category-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .menu-category-title:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: linear-gradient(90deg, #8B0000, #D4AF37);
+            border-radius: 3px;
+        }
+        
+        .menu-item-divider {
+            border-bottom: 1px dashed #D4AF37;
+            margin: 1rem 0;
+        }
+        
+        .wine-glass-icon {
+            color: #D4AF37;
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .decal {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decals (small decorative elements) -->
+    <div class="decal decal-1">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 L60,50 L90,50 L65,75 L75,90 L50,65 L25,90 L35,75 L10,50 L40,50 Z" fill="#D4AF37"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-2">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z M50,30 C35,30 30,35 30,50 C30,65 35,70 50,70 C65,70 70,65 70,50 C70,35 65,30 50,30 Z" fill="#8B0000"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-3">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20,50 Q50,20 80,50 Q50,80 20,50 Z" fill="#D4AF37"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-4">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 L90,50 L50,90 L10,50 Z" fill="#8B0000"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-5">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z" fill="#D4AF37"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-6">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 L60,30 L80,30 L65,45 L75,65 L50,55 L25,65 L35,45 L20,30 L40,30 Z" fill="#8B0000"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-7">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z" fill="#D4AF37" stroke="#8B0000" stroke-width="5"/>
+        </svg>
+    </div>
+    
+    <div class="decal decal-8">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 L90,50 L50,90 L10,50 Z M30,50 L50,30 L70,50 L50,70 Z" fill="#D4AF37"/>
+        </svg>
+    </div>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <p>QUARTA DAS MASSAS - 30% DE DESCONTO EM TODAS AS MASSAS ARTESANAIS | CUPOM: <strong>MASSAS30</strong></p>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="bg-white nav-shadow sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <span class="text-2xl font-serif font-bold text-primary">SÃO PAULO</span>
+                    </div>
+                    
+                    <div class="hidden md:flex space-x-8">
+                        <a href="index.html" class="text-dark font-semibold hover-bordo transition nav-link">Inicio</a>
+                        <a href="menu.html" class="text-dark font-semibold hover-bordo transition nav-link text-primary">Cardápio</a>
+                        <a href="xp.html" class="text-dark font-semibold hover-bordo transition nav-link">Experiência</a>
+                        <a href="deli.html" class="text-dark font-semibold hover-bordo transition nav-link">Delivery</a>
+                        <a href="reserva.html" class="text-dark font-semibold hover-bordo transition nav-link">Restaurantes</a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <a href="re2.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-semibold btn-primary tracking-wider">RESERVAS</a>
+                        <button class="md:hidden text-dark focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="bg-primary text-white py-20 mx-4 rounded-b-4xl relative overflow-hidden">
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">NOSSO CARDÁPIO</h1>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">Sabores autênticos que celebram a tradição italiana</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <a href="#entradas" class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Entradas</a>
+                    <a href="#massas" class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Massas</a>
+                    <a href="#carnes" class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Carnes</a>
+                    <a href="#sobremesas" class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Sobremesas</a>
+                    <a href="#bebidas" class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Bebidas</a>
+                    <a href="#combos" class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">Combos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Sections -->
+        <div class="container mx-auto px-4 py-16">
+            <!-- Entradas -->
+            <section id="entradas" class="menu-section p-8 mb-16 soft-shadow">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-8 menu-category-title">ENTRADAS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Item 1 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Bruschetta al Pomodoro</h3>
+                            <span class="text-primary font-bold">R$ 42,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Pão italiano grelhado com azeite, alho, tomates frescos, manjericão e queijo parmesão.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-leaf mr-2"></i> Contém glúten, laticínios</p>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Antipasto Misto</h3>
+                            <span class="text-primary font-bold">R$ 68,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Seleção de frios italianos (prosciutto, salame, coppa), queijos (parmesão, gorgonzola, mozzarella di bufala), berinjela assada e pães.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-leaf mr-2"></i> Serve 2 pessoas</p>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Fritto Misto</h3>
+                            <span class="text-primary font-bold">R$ 56,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Misto de frutos do mar empanados e fritos (lula, camarão, polvo) com molho tártaro e limão siciliano.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-leaf mr-2"></i> Contém glúten, frutos do mar</p>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Caprese Classica</h3>
+                            <span class="text-primary font-bold">R$ 48,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Mozzarella di bufala, tomates heirloom, manjericão fresco, azeite extra virgem e redução de aceto balsâmico.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-leaf mr-2"></i> Vegetariano, contém laticínios</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Massas -->
+            <section id="massas" class="menu-section p-8 mb-16 soft-shadow">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-8 menu-category-title">MASSAS ARTESANAIS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Item 1 -->
+                    <div class="menu-item p-6">
+                        <div class="promo-badge">MAIS PEDIDO</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Pappardelle al Cinghiale</h3>
+                            <span class="text-primary font-bold">R$ 138,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Massa artesanal larga com ragù de javali selvagem, cogumelos porcini, vinho tinto Chianti e parmesão.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 25 minutos</p>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Risotto al Tartufo Nero</h3>
+                            <span class="text-primary font-bold">R$ 149,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Arroz arbóreo cremoso com trufas negras frescas, vinho branco, manteiga e parmesão reggiano.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 30 minutos</p>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Gnocchi al Gorgonzola</h3>
+                            <span class="text-primary font-bold">R$ 98,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Gnocchi de batata caseiro com molho cremoso de gorgonzola, nozes e pera caramelizada.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 20 minutos</p>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item p-6">
+                        <div class="promo-badge">CHEF</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Spaghetti alle Vongole</h3>
+                            <span class="text-primary font-bold">R$ 128,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Spaghetti al dente com vongoles frescas, alho, salsa, pimenta calabresa e vinho branco.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 25 minutos</p>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Ravioli di Zucca</h3>
+                            <span class="text-primary font-bold">R$ 112,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Ravioli recheado com abóbora assada, ricota, noz-moscada, servido com manteiga sálvia e amaretti.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 20 minutos</p>
+                    </div>
+                    
+                    <!-- Item 6 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Lasagna alla Bolognese</h3>
+                            <span class="text-primary font-bold">R$ 118,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Camadas de massa fresca, ragù bolognese, bechamel e queijos parmesão e mozzarella gratinados.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 35 minutos</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Carnes -->
+            <section id="carnes" class="menu-section p-8 mb-16 soft-shadow">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-8 menu-category-title">CARNES NOBRES</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Item 1 -->
+                    <div class="menu-item p-6">
+                        <div class="promo-badge">ESPECIAL</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Bistecca alla Fiorentina</h3>
+                            <span class="text-primary font-bold">R$ 195,00</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Corte nobre de vitela toscana (800g), grelhado no carvão com azeite toscano, alecrim e limão siciliano. Acompanha batatas rústicas.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 30 minutos</p>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Ossobuco alla Milanese</h3>
+                            <span class="text-primary font-bold">R$ 168,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Ossobuco de vitela cozido lentamente em vinho branco, tomates, cenoura, aipo e gremolata. Acompanha risoto milanese.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 45 minutos</p>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Saltimbocca alla Romana</h3>
+                            <span class="text-primary font-bold">R$ 142,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Filé mignon empanado com presunto parma e sálvia, servido com molho de vinho branco e purê de batata trufado.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 25 minutos</p>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Pollo alla Cacciatora</h3>
+                            <span class="text-primary font-bold">R$ 98,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Sobrecoxa de frango caipira cozida com tomates, azeitonas, alcaparras, vinho branco e ervas aromáticas.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-clock mr-2"></i> Preparo: 35 minutos</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sobremesas -->
+            <section id="sobremesas" class="menu-section p-8 mb-16 soft-shadow">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-8 menu-category-title">SOBREMESAS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Item 1 -->
+                    <div class="menu-item p-6">
+                        <div class="promo-badge">CLÁSSICO</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Tiramisù Classico</h3>
+                            <span class="text-primary font-bold">R$ 48,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Camadas de biscoito savoiardi embebidos em café expresso, creme de mascarpone e cacau em pó.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-wine-glass-alt wine-glass-icon"></i> Harmonização: Vinho Moscato d'Asti</p>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Panna Cotta ai Frutti di Bosco</h3>
+                            <span class="text-primary font-bold">R$ 42,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Creme de baunilha com calda de frutas vermelhas frescas e folhas de hortelã.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-wine-glass-alt wine-glass-icon"></i> Harmonização: Vinho Brachetto d'Acqui</p>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Cannoli Siciliani</h3>
+                            <span class="text-primary font-bold">R$ 38,90</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Crosta crocante recheada com creme de ricota doce, gotas de chocolate e pistache.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-wine-glass-alt wine-glass-icon"></i> Harmonização: Vinho Passito di Pantelleria</p>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Torta della Nonna</h3>
+                            <span class="text-primary font-bold">R$ 45,50</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <p class="text-gray-600 mb-4">Torta de massa amanteigada com creme de baunilha e pinhões caramelizados.</p>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-wine-glass-alt wine-glass-icon"></i> Harmonização: Vinho Vin Santo</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bebidas -->
+            <section id="bebidas" class="menu-section p-8 mb-16 soft-shadow">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-8 menu-category-title">VINHOS & BEBIDAS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Vinhos Tintos -->
+                    <div>
+                        <h3 class="text-xl font-bold text-primary mb-4">VINHOS TINTOS</h3>
+                        
+                        <!-- Item 1 -->
+                        <div class="menu-item p-6 mb-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-dark">Tignanello 2018 - Antinori (Toscana)</h4>
+                                <span class="text-primary font-bold">R$ 1.890,00</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">Cabernet Sauvignon, Sangiovese, Cabernet Franc | Cor intensa, taninos sedosos, notas de cereja, tabaco e baunilha.</p>
+                            <p class="text-xs text-gray-500">Garrafa 750ml</p>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item p-6 mb-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-dark">Barolo Cannubi 2016 - Michele Chiarlo (Piemonte)</h4>
+                                <span class="text-primary font-bold">R$ 1.250,00</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">100% Nebbiolo | Estrutura complexa, aromas de rosas secas, alcatrão e especiarias.</p>
+                            <p class="text-xs text-gray-500">Garrafa 750ml</p>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-dark">Chianti Classico Riserva 2017 - Castello di Volpaia (Toscana)</h4>
+                                <span class="text-primary font-bold">R$ 420,00</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">100% Sangiovese | Taninos elegantes, notas de ameixa, violetas e couro.</p>
+                            <p class="text-xs text-gray-500">Garrafa 750ml</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Vinhos Brancos e Espumantes -->
+                    <div>
+                        <h3 class="text-xl font-bold text-primary mb-4">VINHOS BRANCOS & ESPUMANTES</h3>
+                        
+                        <!-- Item 1 -->
+                        <div class="menu-item p-6 mb-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-dark">Franciacorta Satèn Brut - Bellavista (Lombardia)</h4>
+                                <span class="text-primary font-bold">R$ 680,00</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">Chardonnay, Pinot Nero | Perlage fino, aromas de pão torrado, maçã verde e amêndoas.</p>
+                            <p class="text-xs text-gray-500">Garrafa 750ml</p>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item p-6 mb-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-dark">Gavi di Gavi 2020 - La Scolca (Piemonte)</h4>
+                                <span class="text-primary font-bold">R$ 390,00</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">100% Cortese | Frescor mineral, notas de frutas cítricas, flores brancas e amendoado.</p>
+                            <p class="text-xs text-gray-500">Garrafa 750ml</p>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-dark">Prosecco Superiore DOCG Brut - Valdobbiadene (Veneto)</h4>
+                                <span class="text-primary font-bold">R$ 280,00</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-2">100% Glera | Perlage persistente, aromas de pêra, maçã verde e flor de laranjeira.</p>
+                            <p class="text-xs text-gray-500">Garrafa 750ml</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Outras Bebidas -->
+                    <div class="md:col-span-2 mt-8">
+                        <h3 class="text-xl font-bold text-primary mb-4">OUTRAS BEBIDAS</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Item 1 -->
+                            <div class="menu-item p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-dark">Água Mineral</h4>
+                                    <span class="text-primary font-bold">R$ 12,00</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Sem gás ou com gás (500ml)</p>
+                            </div>
+                            
+                            <!-- Item 2 -->
+                            <div class="menu-item p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-dark">Refrigerantes Italianos</h4>
+                                    <span class="text-primary font-bold">R$ 18,00</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Chinotto, Aranciata, Limonata (330ml)</p>
+                            </div>
+                            
+                            <!-- Item 3 -->
+                            <div class="menu-item p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-dark">Café Espresso</h4>
+                                    <span class="text-primary font-bold">R$ 14,00</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Grãos 100% arábica torrados na casa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Combos -->
+            <section id="combos" class="menu-section p-8 mb-16 soft-shadow">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-8 menu-category-title">COMBOS ESPECIAIS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Combo 1 -->
+                    <div class="menu-item p-6">
+                        <div class="promo-badge">PROMO</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Combo Romântico</h3>
+                            <span class="text-primary font-bold">R$ 298,00</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <ul class="list-disc pl-5 text-gray-600 mb-4">
+                            <li>Antipasto Misto (para 2)</li>
+                            <li>Risotto al Tartufo (para 2)</li>
+                            <li>Bistecca alla Fiorentina (800g)</li>
+                            <li>Tiramisù Classico (para 2)</li>
+                            <li>Garrafa de Chianti Classico</li>
+                        </ul>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-percentage mr-2"></i> Economize R$ 85,90</p>
+                    </div>
+                    
+                    <!-- Combo 2 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Combo Família (4 pessoas)</h3>
+                            <span class="text-primary font-bold">R$ 425,00</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <ul class="list-disc pl-5 text-gray-600 mb-4">
+                            <li>2 Entradas Grandes (a escolha)</li>
+                            <li>2 Massas Grandes (a escolha)</li>
+                            <li>2 Carnes Grandes (a escolha)</li>
+                            <li>4 Sobremesas (a escolha)</li>
+                            <li>2 Garrafas de Vinho (a escolha até R$ 350 cada)</li>
+                        </ul>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-percentage mr-2"></i> Economize até R$ 120,00</p>
+                    </div>
+                    
+                    <!-- Combo 3 -->
+                    <div class="menu-item p-6">
+                        <div class="promo-badge">DEGUSTAÇÃO</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Menu Degustação Chef</h3>
+                            <span class="text-primary font-bold">R$ 245,00</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <ul class="list-disc pl-5 text-gray-600 mb-4">
+                            <li>5 Pratos em pequenas porções selecionados pelo chef</li>
+                            <li>Harmonização com 3 taças de vinho (75ml cada)</li>
+                            <li>Sobremesa surpresa</li>
+                            <li>Café espresso ou digestivo</li>
+                        </ul>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-user-tie mr-2"></i> Somente para jantar com reserva</p>
+                    </div>
+                    
+                    <!-- Combo 4 -->
+                    <div class="menu-item p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-dark">Combo Massas (para 2)</h3>
+                            <span class="text-primary font-bold">R$ 198,00</span>
+                        </div>
+                        <div class="menu-item-divider"></div>
+                        <ul class="list-disc pl-5 text-gray-600 mb-4">
+                            <li>2 Entradas (a escolha)</li>
+                            <li>2 Massas Grandes (a escolha)</li>
+                            <li>1 Sobremesa (para compartilhar)</li>
+                            <li>Garrafa de Prosecco ou Vinho Branco</li>
+                        </ul>
+                        <p class="text-sm text-secondary font-medium"><i class="fas fa-percentage mr-2"></i> Economize R$ 42,50</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-gray-400 py-16 footer-section relative overflow-hidden">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <span class="text-2xl font-serif font-bold text-white">SÃO PAULO</span>
+                        </div>
+                        <p class="mb-4">A melhor experiência em gastronomia italiana na cidade.</p>
+                        <div class="flex space-x-4">
+                            <a href="instagram.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                            <a href="facebook.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                            <a href="ttk.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-tiktok"></i></a>
+                            <a href="tube.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-white mb-4 text-lg">HORÁRIOS</h4>
+                        <ul class="space-y-3">
+                            <li>Terça a Quinta: 18h-23h</li>
+                            <li>Sexta e Sábado: 18h-00h</li>
+                            <li>Domingo: 12h-22h</li>
+                            <li>Segunda: Fechado</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-white mb-4 text-lg">CONTATO</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+                                <span>Av. Paulista, 2000<br>São Paulo - SP</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt mr-3 text-secondary"></i>
+                                <span>(11) 98432-5692</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope mr-3 text-secondary"></i>
+                                <span>contato@torresp.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-white mb-4 text-lg">NEWSLETTER</h4>
+                        <p class="mb-4">Receba novidades e promoções exclusivas</p>
+                        <div class="flex">
+                            <input type="email" placeholder="Seu e-mail" class="flex-grow px-4 py-2 rounded-l-full focus:outline-none text-dark">
+                            <button class="bg-secondary text-dark px-4 py-2 rounded-r-full"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                    <p>&copy; 2023 Restaurante São Paulo. Todos os direitos reservados.</p>
+                    <p class="mt-2 text-sm">Desenvolvido com paixão pela gastronomia italiana.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating WhatsApp -->
+        <div class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-xl z-50 hover:bg-green-700 transition floating-button">
+            <a href="zapzap.html" class="flex items-center">
+                <i class="fab fa-whatsapp text-2xl"></i>
+            </a>
+        </div>
+
+        <!-- Floating Reservation -->
+        <div class="fixed bottom-24 right-6 bg-primary text-white p-4 rounded-full shadow-xl z-50 hover:bg-bordo transition floating-button">
+            <a href="re2.html" class="flex items-center">
+                <i class="far fa-calendar-check text-2xl"></i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

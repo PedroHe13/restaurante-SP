@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>São Paulo - Experiência Gastronômica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B0000',
+                        secondary: '#D4AF37',
+                        dark: '#1A1A1A',
+                        light: '#F8F8F8',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'skyline-pattern': "url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+                        'gold-pattern': "url('https://www.transparenttextures.com/patterns/gold.png')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333333;
+            scroll-behavior: smooth;
+            background-color: #F8F8F8;
+        }
+        
+        .hero-experience {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://blog.maxmilhas.com.br/wp-content/uploads/2022/03/sao-paulo-noite.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .skyline-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://www.transparenttextures.com/patterns/soft-paper.png');
+        }
+        
+        .cabin-card {
+            transition: all 0.4s ease;
+            perspective: 1000px;
+        }
+        
+        .cabin-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .cabin-inner {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .cabin-card:hover .cabin-inner {
+            transform: rotateY(10deg);
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .section-divider {
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #8B0000, #D4AF37);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .gold-texture {
+            background: linear-gradient(rgba(212, 175, 55, 0.9), rgba(212, 175, 55, 0.9)), url('https://www.transparenttextures.com/patterns/gold.png');
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="text-2xl font-serif font-bold text-primary">SÃO PAULO</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-dark font-semibold hover-bordo transition nav-link">Inicio</a>
+                    <a style="color: black;" href="menu.html" class="text-dark font-semibold hover-bordo transition nav-link text-primary">Cardápio</a>
+                    <a style="color: rgb(255, 0, 0);" href="xp.html" class="text-dark font-semibold hover-bordo transition nav-link">Experiência</a>
+                    <a href="deli.html" class="text-dark font-semibold hover-bordo transition nav-link">Delivery</a>
+                    <a href="reserva.html" class="text-dark font-semibold hover-bordo transition nav-link">Restaurantes</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="re2.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-bordo transition">RESERVAS</a>
+                    <button class="md:hidden text-dark focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Experience Section -->
+    <section id="experience" class="hero-experience text-white py-32 relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">A EXPERIÊNCIA</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Gastronomia elevada a 150 metros de altura, com vista panorâmica de 360° da cidade</p>
+        </div>
+        
+        <div class="absolute bottom-10 left-0 right-0 text-center animate-bounce">
+            <a href="#torre" class="text-white text-3xl"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Torre Section -->
+    <section id="torre" class="py-20 skyline-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">A TORRE GASTRONÔMICA</h2>
+                <div class="section-divider"></div>
+                <p class="text-lg max-w-4xl mx-auto">No coração de São Paulo, nossa torre exclusiva oferece 12 cabines privativas no topo, cada uma com vista única para os pontos icônicos da cidade.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="cabin-card">
+                    <div class="cabin-inner bg-white rounded-2xl overflow-hidden shadow-xl">
+                        <div class="h-64 bg-cover bg-center" style="background-image: url('cab1.jpeg');"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">Cabine Paulista</h3>
+                            <p class="text-gray-600 mb-4">Vista privilegiada para a Avenida Paulista e Parque Trianon.</p>
+                            <div class="flex items-center text-secondary">
+                                <i class="fas fa-user-friends mr-2"></i>
+                                <span>2-4 pessoas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cabin-card">
+                    <div class="cabin-inner bg-white rounded-2xl overflow-hidden shadow-xl">
+                        <div class="h-64 bg-cover bg-center" style="background-image: url('cab2.jpeg');"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">Cabine Ibirapuera</h3>
+                            <p class="text-gray-600 mb-4">Panorama completo do Parque Ibirapuera e região sul.</p>
+                            <div class="flex items-center text-secondary">
+                                <i class="fas fa-user-friends mr-2"></i>
+                                <span>2-6 pessoas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cabin-card">
+                    <div class="cabin-inner bg-white rounded-2xl overflow-hidden shadow-xl">
+                        <div class="h-64 bg-cover bg-center" style="background-image: url('cabine.jpeg');"></div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-dark mb-2">Cabine Centro Histórico</h3>
+                            <p class="text-gray-600 mb-4">Vista para o Pátio do Colégio, Edifício Martinelli e Vale do Anhangabaú.</p>
+                            <div class="flex items-center text-secondary">
+                                <i class="fas fa-user-friends mr-2"></i>
+                                <span>2-8 pessoas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skyline Experience -->
+    <section class="py-20 parallax" style="background-image: url('https://images.unsplash.com/photo-1606830738574-4d3ecf23c7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-white bg-opacity-90 rounded-2xl p-10 shadow-2xl">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-6 text-center">JANTAR NAS ALTURAS</h2>
+                <p class="text-lg mb-6">Cada cabine é equipada com:</p>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <li class="flex items-start">
+                        <i class="fas fa-wine-glass-alt text-secondary mt-1 mr-3"></i>
+                        <span>Som ambiente personalizado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-utensils text-secondary mt-1 mr-3"></i>
+                        <span>Mesa com tampo de vidro temperado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-temperature-low text-secondary mt-1 mr-3"></i>
+                        <span>Controle individual de temperatura</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-wifi text-secondary mt-1 mr-3"></i>
+                        <span>Wi-Fi de alta velocidade</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-camera text-secondary mt-1 mr-3"></i>
+                        <span>Vidros fotocromáticos (ajuste de privacidade)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-concierge-bell text-secondary mt-1 mr-3"></i>
+                        <span>Botão para chamar o sommelier</span>
+                    </li>
+                </ul>
+                <div class="text-center">
+                    <a href="re2.html" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-bordo transition">RESERVAR CABINE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elevator Experience -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-serif font-bold text-primary mb-6">A ASCENSÃO GASTRONÔMICA</h2>
+                    <div class="section-divider md:mx-0"></div>
+                    <p class="text-lg mb-6">O elevador panorâmico de vidro leva você em uma jornada visual de 45 segundos até o topo, com projeções que contam a história da culinária italiana em São Paulo.</p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</div>
+                            <p>Piso térreo: Recepção com lounge e barra de prosecco</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">2</div>
+                            <p>Piso 30: Restaurante principal com cozinha aberta</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">3</div>
+                            <p>Piso 45: Cabines privativas no topo da torre</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <img src="https://safetingelevadores.com.br/assets/img/portfolio/panoramico1.webp" alt="Elevador panorâmico" class="rounded-2xl shadow-xl w-full">
+                    <div class="absolute -bottom-5 -right-5 bg-secondary text-dark p-4 rounded-full shadow-lg floating">
+                        <i class="fas fa-arrow-up text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sunset Section -->
+    <section class="py-20 gold-texture text-dark">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-serif font-bold mb-6">HAPPY HOUR NAS NUVENS</h2>
+                <div class="section-divider"></div>
+                <p class="text-xl mb-8">Das 17h às 19h, nosso rooftop bar oferece drinks exclusivos inspirados nos bairros de São Paulo, acompanhados do pôr do sol mais espetacular da cidade.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-white bg-opacity-90 rounded-2xl p-6 shadow-lg">
+                        <div class="text-4xl text-primary mb-4">
+                            <i class="fas fa-cocktail"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">Drink Paulista</h3>
+                        <p>Gin artesanal, xarope de jabuticaba, limão siciliano e espuma de caju</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-90 rounded-2xl p-6 shadow-lg">
+                        <div class="text-4xl text-primary mb-4">
+                            <i class="fas fa-wine-glass-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">Vinho da Casa</h3>
+                        <p>Seleção especial de vinhos brasileiros harmonizados com petiscos</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-90 rounded-2xl p-6 shadow-lg">
+                        <div class="text-4xl text-primary mb-4">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3">Música ao Vivo</h3>
+                        <p>DJ sets e performances acústicas com vista panorâmica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation CTA -->
+    <section class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-6">RESERVE SUA EXPERIÊNCIA</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">As cabines no topo da torre são limitadas e disputadas. Garanta já o seu momento especial.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="re2.html" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">RESERVAR AGORA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl font-serif font-bold text-white">SÃO PAULO</span>
+                    </div>
+                    <p class="mb-4">A melhor experiência em gastronomia italiana na cidade.</p>
+                    <div class="flex space-x-4">
+                        <a href="instagram.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                        <a href="facebook.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="ttk.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-tiktok"></i></a>
+                        <a href="tube.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">HORÁRIOS</h4>
+                    <ul class="space-y-3">
+                        <li>Terça a Quinta: 18h-23h</li>
+                        <li>Sexta e Sábado: 18h-00h</li>
+                        <li>Domingo: 12h-22h</li>
+                        <li>Segunda: Fechado</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">CONTATO</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+                            <span>Torre São Paulo<br>Av. Paulista, 2000<br>São Paulo - SP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-secondary"></i>
+                            <span>(11) 98432-5692</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-secondary"></i>
+                            <span>contato@torresp.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">NEWSLETTER</h4>
+                    <p class="mb-4">Receba novidades e promoções exclusivas</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Seu e-mail" class="flex-grow px-4 py-2 rounded-l-full focus:outline-none text-dark">
+                        <button class="bg-secondary text-dark px-4 py-2 rounded-r-full"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p>&copy; 2023 Restaurante São Paulo. Todos os direitos reservados.</p>
+                <p class="mt-2 text-sm">Desenvolvido com paixão pela gastronomia italiana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <div class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-xl z-50 hover:bg-green-700 transition">
+        <a href="zapzap.html" class="flex items-center">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+</body>
+</html>

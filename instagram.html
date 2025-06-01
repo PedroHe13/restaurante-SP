@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram - Restaurante São Paulo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #FAFAFA;
+        }
+        
+        .instagram-gradient {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .story-border {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            padding: 2px;
+        }
+        
+        .post-interaction:hover {
+            color: #8B0000;
+        }
+        
+        .post {
+            transition: all 0.3s ease;
+        }
+        
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Instagram Header -->
+    <header class="bg-white border-b border-gray-300 fixed top-0 w-full z-50">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i class="fab fa-instagram text-3xl"></i>
+                <h1 class="text-2xl font-medium">Instagram</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-6 items-center">
+                <div class="relative">
+                    <input type="text" placeholder="Pesquisar" class="bg-gray-100 rounded-lg px-4 py-2 text-sm w-64">
+                    <i class="fas fa-search absolute right-3 top-2.5 text-gray-400"></i>
+                </div>
+            </div>
+            
+            <div class="flex space-x-5">
+                <i class="far fa-plus-square text-2xl cursor-pointer"></i>
+                <i class="far fa-heart text-2xl cursor-pointer"></i>
+                <i class="far fa-paper-plane text-2xl cursor-pointer"></i>
+                <div class="h-7 w-7 rounded-full bg-gray-300 overflow-hidden">
+                    <img src="https://ui-avatars.com/api/?name=S&background=8B0000&color=fff" alt="Profile" class="h-full w-full object-cover">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto pt-20 pb-16 px-4">
+        <!-- Profile Section -->
+        <section class="mb-8">
+            <div class="flex flex-col md:flex-row items-center md:items-start md:space-x-10 py-6">
+                <div class="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-gray-300">
+                    <img src="https://ui-avatars.com/api/?name=RESTAURANTE+SÃO+PAULO&background=8B0000&color=D4AF37&bold=true&size=512" alt="São Paulo Restaurante" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="flex-1 mt-4 md:mt-0 text-center md:text-left">
+                    <div class="flex flex-col md:flex-row md:items-center md:space-x-4 mb-4">
+                        <h2 class="text-2xl font-medium mb-2 md:mb-0">restaurante_saopaulo</h2>
+                        <button class="bg-blue-500 text-white px-4 py-1 rounded font-medium">Seguir</button>
+                        <button class="bg-gray-200 text-black px-4 py-1 rounded font-medium">Mensagem</button>
+                        <i class="fas fa-ellipsis-h text-xl cursor-pointer"></i>
+                    </div>
+                    
+                    <div class="flex justify-center md:justify-start space-x-8 mb-4">
+                        <div>
+                            <span class="font-semibold">248</span> publicações
+                        </div>
+                        <div>
+                            <span class="font-semibold">15.8K</span> seguidores
+                        </div>
+                        <div>
+                            <span class="font-semibold">256</span> seguindo
+                        </div>
+                    </div>
+                    
+                    <div class="text-left">
+                        <h3 class="font-semibold">Restaurante São Paulo</h3>
+                        <p>Autêntica Gastronomia Italiana Premium em São Paulo 🇮🇹</p>
+                        <p>✨ Experiência gastronômica única</p>
+                        <p>🍝 Massas artesanais e ingredientes importados</p>
+                        <p>🍷 Carta de vinhos premiada</p>
+                        <p>📍 Av. Paulista, 2000 - São Paulo</p>
+                        <p>🔗 <a href="index.html" class="text-blue-900">torresp.com</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stories -->
+            <div class="flex space-x-4 overflow-x-auto py-4 px-2 no-scrollbar">
+                <div class="flex flex-col items-center space-y-1">
+                    <div class="story-border rounded-full">
+                        <div class="w-16 h-16 rounded-full border-2 border-white overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1595295333158-4742f28fbd85?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Menu" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <span class="text-xs">Cardápio</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-1">
+                    <div class="story-border rounded-full">
+                        <div class="w-16 h-16 rounded-full border-2 border-white overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pratos" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <span class="text-xs">Pratos</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-1">
+                    <div class="story-border rounded-full">
+                        <div class="w-16 h-16 rounded-full border-2 border-white overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vinhos" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <span class="text-xs">Vinhos</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-1">
+                    <div class="story-border rounded-full">
+                        <div class="w-16 h-16 rounded-full border-2 border-white overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Delivery" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <span class="text-xs">Delivery</span>
+                </div>
+                
+                <div class="flex flex-col items-center space-y-1">
+                    <div class="story-border rounded-full">
+                        <div class="w-16 h-16 rounded-full border-2 border-white overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1591261730799-ee4e6c2d16d7?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ambiente" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <span class="text-xs">Ambiente</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Post Navigation -->
+        <div class="border-t border-gray-300 flex justify-center">
+            <button class="flex items-center space-x-1 border-t border-black px-6 py-3 text-sm font-medium">
+                <i class="fas fa-th"></i>
+                <span>PUBLICAÇÕES</span>
+            </button>
+            <button class="flex items-center space-x-1 text-gray-400 px-6 py-3 text-sm font-medium">
+                <i class="fas fa-tv"></i>
+                <span>REELS</span>
+            </button>
+            <button class="flex items-center space-x-1 text-gray-400 px-6 py-3 text-sm font-medium">
+                <i class="far fa-bookmark"></i>
+                <span>SALVOS</span>
+            </button>
+            <button class="flex items-center space-x-1 text-gray-400 px-6 py-3 text-sm font-medium">
+                <i class="fas fa-tag"></i>
+                <span>MARCADOS</span>
+            </button>
+        </div>
+        
+        <!-- Posts Grid -->
+        <div class="grid grid-cols-3 gap-1 md:gap-6 my-4">
+            <!-- Post 1 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://www.cucchiaio.it/content/cucchiaio/it/ricette/2019/11/risotto-al-tartufo/jcr:content/imagePreview.img10.jpg/1575451199978.jpg" alt="Risotto al Tartufo" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>2.4K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>120</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 2 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://passioneperlatavola.it/wp-content/uploads/2021/12/pappardelle-al-sugo-di-cinghiale-0-scaled.jpg.webp" alt="Pappardelle al Cinghiale" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>1.8K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>95</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 3 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bistecca_alla_fiorentina-01.jpg/800px-Bistecca_alla_fiorentina-01.jpg" alt="Bistecca Fiorentina" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>3.1K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>205</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 4 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Restaurant Interior" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>1.5K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>67</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 5 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fine Dining" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>2.2K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>136</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 6 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1574926054530-540288c8e678?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>1.9K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>82</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 7 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1560180474-e8563fd75bab?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wine" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>1.3K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>54</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 8 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pasta" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>2.7K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>118</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post 9 -->
+            <div class="post relative cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1559305616-3f9f5a358dac?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dessert" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 hidden group-hover:flex items-center justify-center space-x-4 text-white">
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-heart"></i>
+                        <span>2.9K</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-comment"></i>
+                        <span>156</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 w-full bg-white border-t border-gray-300 z-50">
+        <div class="flex justify-around items-center py-3">
+            <a href="#" class="text-2xl">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#" class="text-2xl">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="text-2xl">
+                <i class="far fa-plus-square"></i>
+            </a>
+            <a href="#" class="text-2xl">
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            <a href="#" class="w-7 h-7 rounded-full overflow-hidden">
+                <img src="https://ui-avatars.com/api/?name=S&background=8B0000&color=fff" alt="Profile" class="w-full h-full object-cover">
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Simple Instagram-like interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate loading posts
+            setTimeout(() => {
+                document.querySelectorAll('.post').forEach(post => {
+                    post.classList.add('opacity-100');
+                });
+            }, 500);
+            
+            // Add click event to posts
+            document.querySelectorAll('.post').forEach(post => {
+                post.addEventListener('click', function() {
+                    alert('Visualizando post do Restaurante São Paulo');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

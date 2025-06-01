@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>WhatsApp - Restaurante São Paulo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #eae6df;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            background-color: #075e54;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-info {
+            margin-left: 15px;
+        }
+        
+        .header h2 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .header p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            background-color: #128C7E;
+        }
+        
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDYwMCA2MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTEyMi4xIDQyMi42YzEuMiAxLjkgMi4zIDMuOSAzLjQgNS45bC0zMi45IDYxYzMuNi0yLjEgNy4yLTQuMSAxMC44LTYuMiA1LjktMTEgMTEuOS0yMiAxNy44LTMzLjEgMS44LjEgMy41LjIgNS4zLjJoLjJjODguMiAwIDE1OS44LTcxLjYgMTU5LjgtMTU5LjhTMjE0LjcgMTMwIDEyNi41IDEzMCwgMTI2LjcgMTMwIDEyNi41IDEzMEM5MS43IDEzMCA1OS40IDE0My45IDM0LjEgMTY5LjMgOC44IDE5NC43LTUuMSAyMjcgLTUuMSAyNjEuOGMwIDY3LjEgNDMuNCAxMjQgMTAzLjQgMTQ0LjUgNy44IDUuNCAxNS44IDEwLjYgMjMuOCAxNi4zem0tMzUuNS0yOTFjMy40LTMuNCAxMC4yLTEwLjIgMTQtMTQtMi4yLTIuNy00LjYtNS4yLTYuOC03LjktMTcuMyA2LjctMzMuOSAxNi4zLTQ4LjMgMjguNyAtMTQuMyAxMi40LTI2IDI2LjctMzQuNCA0Mi40LTguNSAxNS43LTEyLjggMzIuOS0xMi44IDUwLjMgMCA1Ny43IDQ3IDEwNC43IDEwNC43IDEwNC43IDEzLjYgMCAyNi45LTIuNiAzOS40LTcuOCA2LjctNi41IDEzLjItMTMuMyAxOS45LTE5LjktMy43IDEuNC03LjYgMi43LTExLjQgMy43LTEzLjIgMy40LTI3IDUuMi00MC44IDUuMi01Mi41IDAtOTUtNDIuNS05NS05NXM0Mi41LTk1IDk1LTk1IDk1IDQyLjUgOTUgOTUtMzAuNyA3MS43LTY4LjMgODcuN2M0LTcuNyA3LjctMTUuNyAxMS4yLTIzLjdoMTMuMmwtMjIuNy0zNC4xLTM0LjEgMjIuNyAxMi4yIDEuOGMyLjQgMCAyLjQgMCAyLjQgMS4yIDAgMS4yLTU2LjYgMTE4LjktNTYuNiAxMTguOXYxLjJsNC44IDIuNCA1Ni42LTEwNi4xIDEuMi0xLjJoNDUuNXYtMjR6IiBmaWxsPSIjZDlkOWQ5IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+');
+            background-repeat: repeat;
+            background-size: 210px;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            max-width: 75%;
+            padding: 8px 12px;
+            border-radius: 7.5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message-content {
+            margin-right: 50px;
+            word-wrap: break-word;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.45);
+            align-self: flex-end;
+            margin-top: 2px;
+        }
+        
+        .received {
+            background-color: white;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+        
+        .sent {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+        
+        .message-row {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+        }
+        
+        .message-row.left {
+            justify-content: flex-start;
+        }
+        
+        .input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #f0f0f0;
+            align-items: center;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 9px 12px;
+            border: none;
+            border-radius: 21px;
+            margin-right: 8px;
+            outline: none;
+        }
+        
+        .send-button {
+            background-color: #128C7E;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .message-option {
+            cursor: pointer;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .message-option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .option-container {
+            margin-top: 5px;
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background-color: white;
+            padding: 12px 16px;
+            border-radius: 7.5px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .checkmark {
+            color: #4fc3f7;
+            font-size: 10px;
+            margin-left: 4px;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="avatar">R</div>
+        <div class="header-info">
+            <h2>Restaurante São Paulo</h2>
+            <p>online</p>
+        </div>
+    </div>
+    
+    <div class="chat-container" id="chat">
+        <div class="message-row left">
+            <div class="message received">
+                <div class="message-content">Olá! Bem-vindo ao Restaurante São Paulo. Como posso ajudar você hoje?</div>
+                <div class="message-time">10:30</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="typing-indicator" id="typing">
+        Digitando...
+    </div>
+    
+    <div class="option-container" id="options">
+        <div class="message-option" onclick="sendOption('Ver o cardápio')">Ver o cardápio</div>
+        <div class="message-option" onclick="sendOption('Fazer uma reserva')">Fazer uma reserva</div>
+        <div class="message-option" onclick="sendOption('Horário de funcionamento')">Horário de funcionamento</div>
+        <div class="message-option" onclick="sendOption('Fazer um pedido')">Fazer um pedido</div>
+    </div>
+    
+    <div class="input-container">
+        <input type="text" placeholder="Digite uma mensagem" class="message-input" id="messageInput">
+        <button class="send-button" onclick="sendMessage()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="white"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const messageInput = document.getElementById('messageInput');
+        const chatContainer = document.getElementById('chat');
+        const optionsContainer = document.getElementById('options');
+        const typingIndicator = document.getElementById('typing');
+        
+        // Lista de palavras-chave e respostas
+        const keywords = [
+            {
+                words: ['cardápio', 'menu', 'cardapio', 'comida', 'pratos'],
+                response: 'Nosso cardápio de hoje:<br><br>🍖 <b>Especialidades:</b><br>- Feijoada Completa (R$45)<br>- Picanha na Brasa (R$65)<br>- Bacalhau à Paulista (R$60)<br><br>🥗 <b>Entradas:</b><br>- Mandioca Frita (R$25)<br>- Bolinho de Bacalhau (R$30)<br><br>🍹 <b>Bebidas:</b><br>- Caipirinha (R$20)<br>- Cerveja Nacional (R$12)<br>- Suco Natural (R$10)<br><br>🍰 <b>Sobremesas:</b><br>- Pudim de Leite (R$15)<br>- Sorvete de Açaí (R$18)'
+            },
+            {
+                words: ['reserva', 'reservar', 'mesa', 'lugar', 'disponibilidade'],
+                response: 'Claro! Para fazer uma reserva, preciso das seguintes informações:<br><br>1. Data desejada<br>2. Horário<br>3. Número de pessoas<br>4. Nome completo<br><br>Temos disponibilidade de terça a domingo, das 11h às 23h.'
+            },
+            {
+                words: ['horário', 'funcionamento', 'aberto', 'fechado', 'horario'],
+                response: 'Nosso horário de funcionamento é:<br><br>Segunda: <b>Fechado</b><br>Terça a Quinta: <b>11h às 15h e 18h às 23h</b><br>Sexta a Domingo: <b>11h às 00h</b><br><br>Feriados: verificar pelo telefone (11) 5555-1234'
+            },
+            {
+                words: ['pedido', 'pedir', 'delivery', 'entrega', 'ifood'],
+                response: 'Para fazer um pedido para entrega, você pode:<br><br>1. Usar nosso aplicativo oficial<br>2. Pedir pelo iFood ou Rappi<br>3. Ligar para (11) 5555-1234<br><br>O tempo médio de entrega é de 45-60 minutos, dependendo da sua localização.'
+            },
+            {
+                words: ['endereço', 'localização', 'onde', 'encontrar', 'local', 'endereco'],
+                response: 'Estamos localizados na:<br><br>Rua Augusta, 1500<br>Jardins, São Paulo - SP<br>CEP: 01304-001<br><br>Próximo à estação Consolação do Metrô. Temos estacionamento próprio com manobrista (R$25).'
+            },
+            {
+                words: ['pagamento', 'pagar', 'cartão', 'dinheiro', 'pix'],
+                response: 'Aceitamos as seguintes formas de pagamento:<br><br>- Todos os cartões de crédito e débito<br>- Dinheiro<br>- PIX<br>- Vale-refeição (Alelo, Sodexo, VR, Ticket)<br><br>Não trabalhamos com cheques.'
+            },
+            {
+                words: ['desconto', 'promoção', 'promocao', 'oferta', 'happy hour'],
+                response: 'Nossas promoções atuais:<br><br>- <b>Happy Hour:</b> De terça a sexta, das 18h às 20h (drinks com 50% de desconto)<br>- <b>Rodízio de Carnes:</b> Quartas-feiras por R$79,90 por pessoa<br>- <b>Almoço Executivo:</b> De terça a sexta, das 11h às 15h por R$45 (entrada + prato principal + sobremesa)'
+            },
+            {
+                words: ['wifi', 'internet', 'senha', 'wifi password', 'rede'],
+                response: 'Oferecemos WiFi gratuito para nossos clientes!<br><br>Rede: RestauranteSP_Cliente<br>Senha: BomApetite2025<br><br>A senha é alterada mensalmente, solicite ao garçom caso não consiga conectar.'
+            },
+            {
+                words: ['eventos', 'aniversário', 'festa', 'comemoração', 'aniversario', 'comemoracao'],
+                response: 'Organizamos eventos especiais como:<br><br>- Aniversários<br>- Confraternizações empresariais<br>- Casamentos<br>- Formaturas<br><br>Temos um salão privativo para até 50 pessoas. Para orçamentos, escreva para eventos@restaurantesp.com.br'
+            },
+            {
+                words: ['vegetariano', 'vegano', 'sem glúten', 'sem lactose', 'alergia', 'gluten'],
+                response: 'Temos opções para dietas especiais:<br><br>- <b>Vegetarianos:</b> Moqueca de Palmito, Risoto de Funghi<br>- <b>Veganos:</b> Feijoada Vegana, Bobó de Palmito<br>- <b>Sem Glúten:</b> Peixe Grelhado, Arroz de Pato<br>- <b>Sem Lactose:</b> Vários pratos adaptáveis, consulte o garçom<br><br>Informe sempre sobre alergias e restrições alimentares!'
+            }
+        ];
+        
+        // Respostas padrão quando nenhuma palavra-chave é encontrada
+        const defaultResponses = [
+            'Desculpe, não entendi sua pergunta. Poderia reformular ou escolher uma das opções abaixo?',
+            'Hmm, não tenho certeza do que você está procurando. Posso ajudar com reservas, cardápio, horários ou pedidos.',
+            'Não consegui entender completamente. Você gostaria de saber sobre nosso cardápio, fazer uma reserva, ou conhecer nosso horário de funcionamento?'
+        ];
+
+        // Adicionar evento de tecla Enter para enviar mensagem
+        messageInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Função para enviar mensagem
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+            
+            // Adicionar mensagem do usuário ao chat
+            addMessage(message, 'sent');
+            messageInput.value = '';
+            
+            // Esconder opções após o envio de uma mensagem
+            optionsContainer.style.display = 'none';
+            
+            // Mostrar indicador de digitação
+            setTimeout(() => {
+                typingIndicator.style.display = 'block';
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // Processar resposta
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                    processResponse(message);
+                }, 1500);
+            }, 500);
+        }
+        
+        // Função para enviar opção pré-definida
+        function sendOption(option) {
+            addMessage(option, 'sent');
+            
+            // Esconder opções após selecionar uma
+            optionsContainer.style.display = 'none';
+            
+            // Mostrar indicador de digitação
+            setTimeout(() => {
+                typingIndicator.style.display = 'block';
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // Processar resposta
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                    processResponse(option);
+                }, 1500);
+            }, 500);
+        }
+        
+        // Adicionar mensagem ao chat
+        function addMessage(text, type) {
+            const messageRow = document.createElement('div');
+            messageRow.className = `message-row ${type === 'received' ? 'left' : ''}`;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.textContent = text;
+            
+            const messageTime = document.createElement('div');
+            messageTime.className = 'message-time';
+            
+            // Obter hora atual
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            messageTime.textContent = `${hours}:${minutes}`;
+            
+            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(messageTime);
+            messageRow.appendChild(messageDiv);
+            
+            chatContainer.appendChild(messageRow);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        // Adicionar mensagem com HTML ao chat
+        function addHtmlMessage(html, type) {
+            const messageRow = document.createElement('div');
+            messageRow.className = `message-row ${type === 'received' ? 'left' : ''}`;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.innerHTML = html;
+            
+            const messageTime = document.createElement('div');
+            messageTime.className = 'message-time';
+            
+            // Obter hora atual
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            messageTime.textContent = `${hours}:${minutes}`;
+            
+            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(messageTime);
+            messageRow.appendChild(messageDiv);
+            
+            chatContainer.appendChild(messageRow);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        // Processar resposta baseada na mensagem do usuário
+        function processResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Verificar palavras-chave
+            for (const item of keywords) {
+                for (const word of item.words) {
+                    if (lowerMessage.includes(word)) {
+                        addHtmlMessage(item.response, 'received');
+                        return;
+                    }
+                }
+            }
+            
+            // Se nenhuma palavra-chave encontrada, usar resposta padrão aleatória
+            const randomDefault = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            addHtmlMessage(randomDefault, 'received');
+            
+            // Mostrar opções novamente após resposta padrão
+            setTimeout(() => {
+                optionsContainer.style.display = 'block';
+            }, 500);
+        }
+    </script>
+</body>
+</html>

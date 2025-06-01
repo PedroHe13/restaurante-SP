@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossas Lojas - São Paulo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B0000',
+                        secondary: '#D4AF37',
+                        dark: '#1A1A1A',
+                        light: '#F8F8F8',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'skyline-pattern': "url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+                        'gold-pattern': "url('https://www.transparenttextures.com/patterns/gold.png')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333333;
+            scroll-behavior: smooth;
+            background-color: #F8F8F8;
+        }
+        
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+        
+        .location-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .location-card:hover {
+            transform: translateY(-3px);
+            border-left-color: #8B0000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .location-card.active {
+            border-left-color: #8B0000;
+            background-color: rgba(139, 0, 0, 0.05);
+        }
+        
+        .section-divider {
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #8B0000, #D4AF37);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        
+        .location-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="text-2xl font-serif font-bold text-primary">SÃO PAULO</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-dark font-semibold hover:text-primary transition">Home</a>
+                    <a href="menu.html" class="text-dark font-semibold hover:text-primary transition">Cardápio</a>
+                    <a href="xp.html" class="text-dark font-semibold hover:text-primary transition">Experiência</a>
+                    <a href="deli.html" class="text-dark font-semibold hover:text-primary transition">Delivery</a>
+                    <a href="reserva.html" class="text-dark font-semibold hover:text-primary transition text-primary">Restaurantes</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="re2.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-bordo transition">RESERVAS</a>
+                    <button class="md:hidden text-dark focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6">NOSSOS RESTAURANTES EM SÃO PAULO</h1>
+            <p class="text-xl max-w-2xl mx-auto">Encontre o restaurante São Paulo mais próximo de você</p>
+        </div>
+    </section>
+
+    <!-- Map and Locations Section -->
+    <section class="py-16 bg-gray-50 mb-20 lg:mb-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-4">ONDE NOS ENCONTRAR</h2>
+                <div class="section-divider"></div>
+                <p class="text-lg max-w-4xl mx-auto">Nossos restaurantes estão estrategicamente localizados nas melhores regiões de São Paulo</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Locations List -->
+                <div class="lg:w-1/3">
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-primary mb-6">NOSSAS UNIDADES</h3>
+                        
+                        <div class="space-y-4">
+                            <!-- Location 1 -->
+                            <div class="location-card active bg-white p-4 rounded-lg cursor-pointer" 
+                                 onclick="updateMap('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197353585769!2d-46.6586759246871!3d-23.56134957880139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%202000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-200!5e0!3m2!1spt-BR!2sbr!4v1689876033453!5m2!1spt-BR!2sbr')">
+                                <div class="flex items-start">
+                                    <div class="location-icon bg-primary text-white mr-4">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">Paulista</h4>
+                                        <p class="text-gray-600">Av. Paulista, 2000 - Bela Vista</p>
+                                        <div class="flex items-center mt-2 text-sm">
+                                            <i class="fas fa-phone-alt text-secondary mr-2"></i>
+                                            <span>(11) 98432-5692</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location 2 -->
+                            <div class="location-card bg-white p-4 rounded-lg cursor-pointer" 
+                                 onclick="updateMap('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.277974655566!2d-46.6637029246865!3d-23.5920623688419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a00cd2f3a1%3A0x15d92b1d6f3c61fd!2sR.%20Oscar%20Freire%2C%20800%20-%20Cerqueira%20C%C3%A9sar%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001419-001!5e0!3m2!1spt-BR!2sbr!4v1689876123456!5m2!1spt-BR!2sbr')">
+                                <div class="flex items-start">
+                                    <div class="location-icon bg-secondary text-dark mr-4">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">Jardins</h4>
+                                        <p class="text-gray-600">R. Oscar Freire, 800 - Cerqueira César</p>
+                                        <div class="flex items-center mt-2 text-sm">
+                                            <i class="fas fa-phone-alt text-secondary mr-2"></i>
+                                            <span>(11) 4002-8923</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location 3 -->
+                            <div class="location-card bg-white p-4 rounded-lg cursor-pointer" 
+                                 onclick="updateMap('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.488839987447!2d-46.69649042468728!3d-23.55372277881135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577cdd5e0b1f%3A0x3a6b3e6b3a6b3e6b!2sAv.%20Brigadeiro%20Faria%20Lima%2C%203900%20-%20Itaim%20Bibi%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004538-132!5e0!3m2!1spt-BR!2sbr!4v1689876212345!5m2!1spt-BR!2sbr')">
+                                <div class="flex items-start">
+                                    <div class="location-icon bg-primary text-white mr-4">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">Faria Lima</h4>
+                                        <p class="text-gray-600">Av. Brigadeiro Faria Lima, 3900 - Itaim Bibi</p>
+                                        <div class="flex items-center mt-2 text-sm">
+                                            <i class="fas fa-phone-alt text-secondary mr-2"></i>
+                                            <span>(11) 4002-8924</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location 4 -->
+                            <div class="location-card bg-white p-4 rounded-lg cursor-pointer" 
+                                 onclick="updateMap('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.841486620163!2d-46.6821264246869!3d-23.57446626878996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce576d8faa3ef1%3A0x3a6b3e6b3a6b3e6b!2sR.%20Augusta%2C%201500%20-%20Consola%C3%A7%C3%A3o%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001304-001!5e0!3m2!1spt-BR!2sbr!4v1689876301234!5m2!1spt-BR!2sbr')">
+                                <div class="flex items-start">
+                                    <div class="location-icon bg-secondary text-dark mr-4">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">Augusta</h4>
+                                        <p class="text-gray-600">R. Augusta, 1500 - Consolação</p>
+                                        <div class="flex items-center mt-2 text-sm">
+                                            <i class="fas fa-phone-alt text-secondary mr-2"></i>
+                                            <span>(11) 4002-8925</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 mt-6">
+                        <h3 class="text-xl font-bold text-primary mb-4">HORÁRIOS DE FUNCIONAMENTO</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between">
+                                <span>Terça a Quinta</span>
+                                <span class="font-semibold">18h - 23h</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Sexta e Sábado</span>
+                                <span class="font-semibold">18h - 00h</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Domingo</span>
+                                <span class="font-semibold">12h - 22h</span>
+                            </li>
+                            <li class="flex justify-between text-gray-400">
+                                <span>Segunda-feira</span>
+                                <span class="font-semibold">Fechado</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Map Container -->
+                <div class="lg:w-2/3">
+                    <div class="map-container h-full">
+                        <iframe id="restaurantMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197353585769!2d-46.6586759246871!3d-23.56134957880139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%202000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-200!5e0!3m2!1spt-BR!2sbr!4v1689876033453!5m2!1spt-BR!2sbr" 
+                                allowfullscreen="" loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 mt-6 mb-8">
+                        <h3 class="text-xl font-bold text-primary mb-4">COMO CHEGAR</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <div class="location-icon bg-primary text-white mr-3">
+                                    <i class="fas fa-subway"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Metrô</h4>
+                                    <p class="text-sm text-gray-600">Estação Trianon-MASP (Linha 2-Verde)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <div class="location-icon bg-secondary text-dark mr-3">
+                                    <i class="fas fa-bus"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Ônibus</h4>
+                                    <p class="text-sm text-gray-600">Linhas 175T-10, 7029-10, 8100-10</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <div class="location-icon bg-primary text-white mr-3">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Estacionamento</h4>
+                                    <p class="text-sm text-gray-600">Torre São Paulo - R$ 15/h (válido para clientes)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-secondary text-dark mb-20 lg:mb-24">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-6">PRONTO PARA UMA EXPERIÊNCIA INESQUECÍVEL?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Reserve agora mesmo sua mesa em qualquer uma de nossas unidades</p>
+            <a href="re2.html" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-bordo transition">FAZER RESERVA</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-20 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl font-serif font-bold text-white">SÃO PAULO</span>
+                    </div>
+                    <p class="mb-4">A melhor experiência em gastronomia italiana na cidade.</p>
+                    <div class="flex space-x-4">
+                        <a href="instagram.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-instagram"></i></a>
+                        <a href="facebook.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="ttk.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-tiktok"></i></a>
+                        <a href="tube.html" class="text-gray-400 hover:text-secondary transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">HORÁRIOS</h4>
+                    <ul class="space-y-3">
+                        <li>Terça a Quinta: 18h-23h</li>
+                        <li>Sexta e Sábado: 18h-00h</li>
+                        <li>Domingo: 12h-22h</li>
+                        <li>Segunda: Fechado</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">CONTATO</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+                            <span>Torre São Paulo<br>Av. Paulista, 2000<br>São Paulo - SP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-secondary"></i>
+                            <span>(11) 98432-5692</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-secondary"></i>
+                            <span>contato@torresp.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-lg">NEWSLETTER</h4>
+                    <p class="mb-4">Receba novidades e promoções exclusivas</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Seu e-mail" class="flex-grow px-4 py-2 rounded-l-full focus:outline-none text-dark">
+                        <button class="bg-secondary text-dark px-4 py-2 rounded-r-full"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p>© 2023 Restaurante São Paulo. Todos os direitos reservados.</p>
+                <p class="mt-2 text-sm">Desenvolvido com paixão pela gastronomia italiana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <div class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-xl z-50 hover:bg-green-700 transition">
+        <a href="#" class="flex items-center">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <script>
+        function updateMap(newMapUrl) {
+            // Update the iframe src
+            document.getElementById('restaurantMap').src = newMapUrl;
+            
+            // Update active card
+            const cards = document.querySelectorAll('.location-card');
+            cards.forEach(card => {
+                card.classList.remove('active');
+                card.querySelector('.location-icon').classList.remove('bg-primary', 'text-white');
+                card.querySelector('.location-icon').classList.add('bg-secondary', 'text-dark');
+            });
+            
+            // Add active class to clicked card
+            event.currentTarget.classList.add('active');
+            event.currentTarget.querySelector('.location-icon').classList.remove('bg-secondary', 'text-dark');
+            event.currentTarget.querySelector('.location-icon').classList.add('bg-primary', 'text-white');
+        }
+    </script>
+</body>
+</html>

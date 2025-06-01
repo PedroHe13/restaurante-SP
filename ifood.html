@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFood - Restaurante São Paulo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        
+        .ifood-app {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        /* Header */
+        .ifood-header {
+            background-color: #EA1D2C;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .ifood-header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-button {
+            color: white;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .ifood-logo {
+            height: 24px;
+        }
+        
+        .ifood-header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: white;
+        }
+        
+        .ifood-header-right i {
+            font-size: 18px;
+        }
+        
+        /* Restaurant Cover */
+        .restaurant-cover {
+            position: relative;
+            height: 200px;
+            background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .restaurant-info {
+            background-color: white;
+            padding: 20px;
+            position: relative;
+            margin-top: -50px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .restaurant-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: white;
+            padding: 2px;
+            position: absolute;
+            top: -40px;
+            left: 20px;
+            overflow: hidden;
+            border: 2px solid #EA1D2C;
+        }
+        
+        .restaurant-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .restaurant-name-container {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .restaurant-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .restaurant-category {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .restaurant-rating {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .star-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .star-rating i {
+            color: #FFD700;
+        }
+        
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        
+        .coupon {
+            background-color: #FFF2F3;
+            border: 1px dashed #EA1D2C;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .coupon-icon {
+            color: #EA1D2C;
+            font-size: 20px;
+        }
+        
+        .coupon-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #EA1D2C;
+        }
+        
+        /* Menu Categories */
+        .menu-categories {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            overflow-x: auto;
+            margin-bottom: 10px;
+            position: sticky;
+            top: 54px;
+            background-color: white;
+            z-index: 99;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .menu-categories::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .menu-category {
+            white-space: nowrap;
+            font-weight: 600;
+            color: #777;
+            padding-bottom: 10px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .menu-category.active {
+            color: #EA1D2C;
+            border-bottom: 2px solid #EA1D2C;
+        }
+        
+        /* Menu Sections */
+        .menu-section {
+            padding: 20px;
+            border-bottom: 10px solid #f8f8f8;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .menu-item {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .item-description {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #333;
+        }
+        
+        /* Footer */
+        .ifood-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .footer-item i {
+            font-size: 20px;
+            color: #777;
+        }
+        
+        .footer-item span {
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .footer-item.active i,
+        .footer-item.active span {
+            color: #EA1D2C;
+        }
+        
+        /* Badge */
+        .promo-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #EA1D2C;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Floating cart button */
+        .cart-button {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #EA1D2C;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(234, 29, 44, 0.3);
+            z-index: 100;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .cart-button i {
+            font-size: 24px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: white;
+            color: #EA1D2C;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="ifood-app">
+        <!-- Header -->
+        <div class="ifood-header">
+            <div class="ifood-header-left">
+                <a href="#" class="back-button"><i class="fas fa-arrow-left"></i></a>
+                <img src="https://logodownload.org/wp-content/uploads/2017/05/ifood-logo-8.png" alt="iFood" class="ifood-logo">
+            </div>
+            <div class="ifood-header-right">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+            </div>
+        </div>
+        
+        <!-- Restaurant Cover -->
+        <div class="restaurant-cover">
+            <div class="promo-badge">15% OFF</div>
+        </div>
+        
+        <!-- Restaurant Info -->
+        <div class="restaurant-info">
+            <div class="restaurant-logo">
+                <img src="https://ui-avatars.com/api/?name=RS&background=8B0000&color=fff" alt="São Paulo">
+            </div>
+            
+            <div class="restaurant-name-container">
+                <h1 class="restaurant-name">São Paulo</h1>
+                <p class="restaurant-category">Italiana • Premium • Gourmet</p>
+            </div>
+            
+            <div class="restaurant-rating">
+                <div class="star-rating">
+                    <i class="fas fa-star"></i>
+                    <span>4.8 (432)</span>
+                </div>
+                <div class="delivery-time">
+                    <i class="fas fa-clock"></i>
+                    <span>30-45 min</span>
+                </div>
+            </div>
+            
+            <div class="coupon">
+                <i class="fas fa-ticket-alt coupon-icon"></i>
+                <span class="coupon-text">Cupom de 15% OFF: SÃO15</span>
+            </div>
+        </div>
+        
+        <!-- Menu Categories -->
+        <div class="menu-categories">
+            <div class="menu-category active">Destaques</div>
+            <div class="menu-category">Entradas</div>
+            <div class="menu-category">Massas</div>
+            <div class="menu-category">Carnes</div>
+            <div class="menu-category">Risotos</div>
+            <div class="menu-category">Bebidas</div>
+            <div class="menu-category">Sobremesas</div>
+        </div>
+        
+        <!-- Menu Sections -->
+        <div class="menu-section">
+            <h2 class="section-title">Destaques</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-image">
+                        <img src="https://www.cucchiaio.it/content/cucchiaio/it/ricette/2019/11/risotto-al-tartufo/jcr:content/imagePreview.img10.jpg/1575451199978.jpg" alt="Risotto al Tartufo">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">Risotto al Tartufo Nero</h3>
+                        <p class="item-description">Arroz arbóreo cremoso com trufas negras frescas, vinho branco e parmesão reggiano.</p>
+                        <p class="item-price">R$ 149,90</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-image">
+                        <img src="https://passioneperlatavola.it/wp-content/uploads/2021/12/pappardelle-al-sugo-di-cinghiale-0-scaled.jpg.webp" alt="Pappardelle al Cinghiale">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">Pappardelle al Cinghiale</h3>
+                        <p class="item-description">Massa artesanal larga com ragù de javali selvagem, cogumelos porcini e vinho tinto.</p>
+                        <p class="item-price">R$ 138,50</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bistecca_alla_fiorentina-01.jpg/800px-Bistecca_alla_fiorentina-01.jpg" alt="Bistecca Fiorentina">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">Bistecca alla Fiorentina</h3>
+                        <p class="item-description">Corte nobre de vitela toscana, grelhado no carvão com azeite toscano e alecrim.</p>
+                        <p class="item-price">R$ 195,00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <h2 class="section-title">Entradas</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-image">
+                        <img src="https://i.pinimg.com/736x/c5/f3/f6/c5f3f6e2a73a9113a7c7c31c6aa7cd8c.jpg" alt="Burrata">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">Burrata con Tartufo</h3>
+                        <p class="item-description">Burrata fresca com lascas de trufa negra, tomate confit e pesto de manjericão.</p>
+                        <p class="item-price">R$ 85,00</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-image">
+                        <img src="https://www.domcotico.com.br/wp-content/uploads/2020/06/antipasti-1024x683.jpg" alt="Antipasti">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">Antipasti Misto</h3>
+                        <p class="item-description">Seleção de queijos e embutidos italianos, como prosciutto di parma, salame, grana padano e pecorino.</p>
+                        <p class="item-price">R$ 97,50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Cart Button -->
+        <div class="cart-button">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="cart-count">2</div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="ifood-footer">
+            <div class="footer-item active">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-search"></i>
+                <span>Buscar</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-receipt"></i>
+                <span>Pedidos</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Menu Categories Interaction
+        const menuCategories = document.querySelectorAll('.menu-category');
+        
+        menuCategories.forEach(category => {
+            category.addEventListener('click', () => {
+                menuCategories.forEach(c => c.classList.remove('active'));
+                category.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
